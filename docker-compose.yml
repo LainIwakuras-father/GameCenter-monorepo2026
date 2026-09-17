@@ -2,6 +2,7 @@ services:
   db:
     image: postgres:15
     container_name: db-post_gamecenter
+    hostname: postgres
     ports:
       - "5432:5432"
     environment:
@@ -22,7 +23,8 @@ services:
 
   web:
     container_name: app_gamecenter
-    build: .
+    build: ./backend
+    hostname: web
     command:
       - /bin/sh
       - -c
@@ -67,9 +69,42 @@ services:
     networks:
       - network
 
+  frontend:
+    build:
+      context: ./gamecenter_frontend-main
+      dockerfile: Dockerfile
+    hostname: frontend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+
+
+  nginx:
+    image: nginx
+    hostname: nginx-entrypoint
+    container_name: nginx-entrypoint
+    restart: unless-stopped
+    depends_on:
+      client:
+        condition: service_started
+    environment:
+      TZ: "Europe/Moscow"
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - /etc/hosts:/etc/hosts:ro
+    networks:
+      - network
+
+
 networks:
   network:
+    name: network
     driver: bridge
+
 
 volumes:
   postgres_data:
