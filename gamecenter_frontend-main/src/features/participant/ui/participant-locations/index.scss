@@ -1,0 +1,58 @@
+.participant-locations {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  overflow: hidden;
+  background: var(--ink-soft);
+  border: 2px solid var(--paper);
+  border-radius: 4px 22px 4px 22px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+
+  &__viewport {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-right: 6px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--accent) transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      background-clip: padding-box;
+      border: 2px solid transparent;
+      border-radius: 999px;
+    }
+  }
+
+  &__content-wrapper {
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__question {
+    margin-top: 8px;
+  }
+
+  &__time-plate {
+    margin-right: 8px;
+  }
+}

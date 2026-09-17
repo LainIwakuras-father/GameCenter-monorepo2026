@@ -1,0 +1,142 @@
+@font-face {
+  font-family: "Articulat CF";
+  src: url("./shared/lib/fonts/ArticulatCF-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Articulat CF";
+  src: url("./shared/lib/fonts/ArticulatCF-DemiBold.otf") format("opentype");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hirro Sans";
+  src: url("./shared/lib/fonts/HirroSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hirro Sans";
+  src: url("./shared/lib/fonts/HirroSans-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hirro Sans";
+  src: url("./shared/lib/fonts/HirroSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hirro Sans";
+  src: url("./shared/lib/fonts/HirroSans-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+
+  --accent: #cdf626;
+  --accent-pressed: #b7df18;
+  --ink: #212121;
+  --ink-soft: #2c2c2c;
+  --ink-muted: #454545;
+  --paper: #e5e5e5;
+  --paper-bright: #f4f4f0;
+  --paper-muted: #c8c8c8;
+  --signal-red: #ee5125;
+  --signal-blue: #5675ef;
+  --signal-yellow: #ffe438;
+  --signal-purple: #9662e4;
+
+  --control-color-primary: var(--accent);
+  --control-color-secondary: var(--ink);
+  --control-color-error: var(--signal-red);
+  --control-color-disabled: #777;
+  --control-color-disabled-dark: #5a5a5a;
+
+  --control-color-primary-pressed: var(--accent-pressed);
+  --control-color-secondary-pressed: #383838;
+  --control-color-error-pressed: #d9421c;
+
+  --control-color-primary-text: var(--ink);
+  --control-color-secondary-text: var(--paper);
+  --control-color-error-text: var(--ink);
+  --control-color-disabled-text: #a9a9a9;
+
+  --surface-color-light: var(--paper);
+  --surface-color-gray: #d2d2d0;
+  --surface-color-dark-gray: #a7a7a5;
+  --surface-color-darker-gray: #858583;
+
+  --font-color-primary: var(--ink);
+  --font-color-secondary: #5e5e5c;
+  --font-color-placeholder: #797977;
+  --font-color-dark-gray: #383836;
+  --font-color-blue: var(--ink);
+  --font-color-on-dark: var(--paper);
+
+  --font-family-primary: "Articulat CF", Arial, sans-serif;
+  --font-family-display: "Hirro Sans", "Articulat CF", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+html {
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+  color: var(--font-color-on-dark);
+  background: var(--ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--ink);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: var(--ink);
+  background: var(--accent);
+}

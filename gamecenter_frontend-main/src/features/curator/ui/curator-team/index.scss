@@ -1,0 +1,241 @@
+.curator-team {
+  &__art {
+    animation: curator-team-section-in 360ms 70ms cubic-bezier(0.22, 1, 0.36, 1)
+      both;
+
+    &:nth-of-type(2) {
+      animation-delay: 120ms;
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: 170ms;
+    }
+  }
+
+  &__controls {
+    display: grid;
+    grid-template-columns: 38px 38px minmax(104px, 1fr) minmax(96px, 1fr);
+    align-items: stretch;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  &__control {
+    width: 38px;
+    min-width: 38px;
+    margin-right: 0;
+  }
+
+  &__timer,
+  &__stantion-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    box-sizing: border-box;
+    min-width: 0;
+    width: auto;
+    flex: none;
+    border: 2px solid var(--ink);
+    border-radius: 3px 10px 3px 10px;
+  }
+
+  &__timer {
+    color: var(--ink);
+    background: var(--accent);
+    font-size: 17px;
+    font-weight: 600;
+
+    &_too-much {
+      color: var(--ink);
+      background: var(--signal-red);
+    }
+  }
+
+  &__stantion-time {
+    padding: 0 8px;
+    color: var(--ink);
+    background: var(--surface-color-gray);
+    font-size: 16px;
+    font-weight: 600;
+
+    svg {
+      margin-right: 8px;
+    }
+
+    span#mobile-none {
+      margin-left: 4px;
+    }
+
+    @media screen and (max-width: 380px) {
+      font-size: 14px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+      }
+
+      span#mobile-none {
+        display: none;
+      }
+    }
+  }
+
+  &__riddle-btn {
+    width: fit-content;
+    padding: 12px 16px;
+  }
+
+  &__score-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__send-btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    margin-right: 0;
+  }
+
+  &__art {
+    margin-bottom: 8px;
+  }
+
+  &__warn {
+    display: block;
+    margin-top: 12px;
+    color: var(--font-color-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  &__error {
+    display: block;
+    margin-top: 8px;
+    color: var(--signal-red);
+  }
+}
+
+.fine-plate {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  padding: 8px;
+  margin-top: 8px;
+  background: var(--surface-color-gray);
+  border: 2px solid var(--ink);
+  border-radius: 3px 12px 3px 12px;
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 160ms ease;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateX(2px);
+      border-color: var(--accent);
+    }
+  }
+
+  &__counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    color: var(--ink);
+    background: var(--accent);
+    border: 2px solid var(--ink);
+    border-radius: 3px 9px 3px 9px;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  &__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__title {
+    color: var(--ink);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  &__subtitle {
+    color: var(--font-color-secondary);
+    font-size: 13px;
+  }
+
+  &__controls {
+    display: flex;
+    flex: 0 0 auto;
+    margin-left: auto;
+
+    .button:first-child {
+      margin-right: 4px;
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .curator-team {
+    &__controls {
+      grid-template-columns: 38px 38px minmax(0, 1fr);
+    }
+
+    &__stantion-time {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .curator-team {
+    &__controls {
+      grid-template-columns: 36px 36px minmax(0, 1fr);
+      gap: 6px;
+    }
+
+    &__control {
+      width: 36px;
+      min-width: 36px;
+    }
+
+    &__timer {
+      font-size: 15px;
+    }
+  }
+}
+
+@keyframes curator-team-section-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curator-team__art,
+  .fine-plate {
+    animation: none;
+    transition: none;
+  }
+}

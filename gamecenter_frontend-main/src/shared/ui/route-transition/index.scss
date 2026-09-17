@@ -1,0 +1,27 @@
+.route-transition {
+  width: 100%;
+  min-width: 0;
+
+  /* The startup curtain already owns the entrance. Keep the route surface
+     still so it is revealed cleanly instead of sliding underneath it. */
+  animation: none;
+}
+
+/*
+ * Route and page animations mount underneath the fixed intro. Freeze their
+ * first frame until the curtain starts moving so the page enters as it is
+ * revealed instead of already being fully visible behind it.
+ */
+.route-transition[data-intro-covered],
+.route-transition[data-intro-covered] *,
+.route-transition[data-intro-covered] *::before,
+.route-transition[data-intro-covered] *::after {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-transition {
+    animation: none;
+    transform: none;
+  }
+}

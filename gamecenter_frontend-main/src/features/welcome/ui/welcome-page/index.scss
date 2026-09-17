@@ -1,0 +1,86 @@
+.welcome-page {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100svh - 116px);
+  padding: 22px;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--paper-bright);
+  border-radius: 4px 28px 4px 28px;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.42);
+
+  &_safari {
+    max-height: calc(100svh - 150px);
+  }
+
+  .button {
+    flex-shrink: 0;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+
+  &__eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--font-color-secondary);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  &__badge {
+    flex: 0 0 auto;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    transform: rotate(7deg);
+  }
+
+  &__subtitle {
+    display: block;
+    max-width: 480px;
+    margin-bottom: 16px;
+    color: var(--font-color-secondary);
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  &__scroll-block {
+    flex-shrink: 1;
+    max-height: 430px;
+    padding-right: 4px;
+    margin-bottom: 16px;
+    overflow: auto;
+    scrollbar-color: var(--ink) transparent;
+    scrollbar-width: thin;
+  }
+
+  @media (max-width: 420px) {
+    padding: 16px;
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__badge {
+      width: 52px;
+      height: 52px;
+    }
+  }
+}

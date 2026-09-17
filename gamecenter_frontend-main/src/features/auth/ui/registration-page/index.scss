@@ -1,0 +1,66 @@
+.registration-page {
+  isolation: isolate;
+
+  &__watermark {
+    position: fixed;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: min(88vw, 980px);
+    height: min(92svh, 1040px);
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.13;
+    filter: grayscale(1) brightness(1.7);
+    transform: translate(-50%, -50%) rotate(-5deg);
+    animation: registration-watermark-in 360ms 80ms ease-out both !important;
+  }
+
+  .brand-decor {
+    opacity: 0.32;
+  }
+
+  .page__content {
+    z-index: 2;
+  }
+
+  .registration-form .button {
+    min-height: 52px;
+    font-size: clamp(17px, 3vw, 20px);
+    font-weight: 560;
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 600px) {
+    &__watermark {
+      top: 52%;
+      width: 150vw;
+      height: 112svh;
+      opacity: 0.1;
+      transform: translate(-50%, -50%) rotate(-8deg);
+    }
+
+    .brand-decor {
+      opacity: 0.18;
+    }
+
+    .registration-form .button {
+      font-size: 17px;
+    }
+  }
+}
+
+@keyframes registration-watermark-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .registration-page__watermark {
+    animation: none !important;
+    transform: translate(-50%, -50%) rotate(-5deg);
+  }
+}

@@ -1,0 +1,102 @@
+.button {
+  position: relative;
+  width: 100%;
+  outline: none;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+
+  cursor: pointer;
+
+  font-family: var(--font-family-primary);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.05;
+
+  text-transform: lowercase;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background-color 140ms ease;
+
+  &_view_primary {
+    background: var(--control-color-primary);
+    color: var(--control-color-primary-text);
+
+    svg {
+      fill: var(--control-color-primary-text);
+    }
+
+    &:active {
+      background: var(--control-color-primary-pressed);
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+  }
+
+  &_view_secondary {
+    background: var(--control-color-secondary);
+    color: var(--control-color-secondary-text);
+
+    svg {
+      fill: var(--control-color-secondary-text);
+    }
+
+    &:active {
+      background: var(--control-color-secondary-pressed);
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+  }
+
+  &_view_error {
+    background: var(--control-color-error);
+    color: var(--control-color-error-text);
+
+    svg {
+      fill: var(--control-color-error-text);
+    }
+
+    &:active {
+      background: var(--control-color-error-pressed);
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+  }
+
+  &:disabled {
+    background: var(--control-color-disabled);
+    color: var(--control-color-disabled-text);
+    border-color: #666;
+    box-shadow: none;
+
+    cursor: default;
+
+    svg {
+      fill: var(--control-color-disabled-text);
+    }
+  }
+
+  &_size_m {
+    height: 52px;
+    min-width: 52px;
+
+    border-radius: 4px 14px 4px 14px;
+  }
+
+  &_size_s {
+    font-size: 16px;
+    line-height: 1;
+    height: 38px;
+    min-width: 38px;
+
+    border-radius: 3px 10px 3px 10px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  @media (hover: hover) {
+    &:not(:disabled):hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+  }
+}

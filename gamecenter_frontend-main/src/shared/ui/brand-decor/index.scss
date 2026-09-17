@@ -1,0 +1,126 @@
+.brand-decor {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+
+  img {
+    position: absolute;
+    display: block;
+    animation: brand-decor-reveal 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  &__star {
+    top: 7vh;
+    left: max(18px, calc(50% - 560px));
+    width: 72px;
+    transform: rotate(-13deg);
+    opacity: 0.9;
+  }
+
+  &__qr {
+    right: max(-44px, calc(50% - 600px));
+    top: 12vh;
+    width: 142px;
+    opacity: 0.11;
+    transform: rotate(8deg);
+    animation-delay: 100ms;
+  }
+
+  &__barcodes {
+    right: max(20px, calc(50% - 540px));
+    bottom: 11vh;
+    width: 118px;
+    opacity: 0.55;
+    transform: rotate(-8deg);
+    animation-delay: 320ms;
+  }
+
+  &__flower {
+    width: 116px;
+    opacity: 0.85;
+
+    &_blue {
+      left: max(-28px, calc(50% - 650px));
+      top: 38vh;
+      width: 94px;
+      opacity: 0.18;
+      transform: rotate(-14deg);
+      animation-delay: 220ms;
+    }
+
+    &_purple {
+      left: max(-38px, calc(50% - 640px));
+      bottom: 12vh;
+      transform: rotate(18deg);
+      animation-delay: 280ms;
+    }
+
+    &_yellow {
+      right: max(-34px, calc(50% - 640px));
+      top: 45vh;
+      transform: rotate(-24deg);
+      animation-delay: 180ms;
+    }
+  }
+
+  &__person {
+    right: max(-86px, calc(50% - 660px));
+    bottom: -18px;
+    width: 160px;
+    opacity: 0.28;
+    transform: rotate(4deg);
+    animation-delay: 360ms;
+  }
+
+  @media (max-width: 900px) {
+    &__qr,
+    &__person {
+      opacity: 0.08;
+    }
+
+    &__star {
+      left: 12px;
+      width: 54px;
+    }
+
+    &__flower {
+      width: 86px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    &__qr,
+    &__person,
+    &__flower_blue,
+    &__flower_yellow {
+      display: none;
+    }
+
+    &__barcodes {
+      right: 12px;
+      bottom: 84px;
+      width: 84px;
+    }
+
+    &__flower_purple {
+      left: -38px;
+      bottom: 100px;
+      width: 94px;
+    }
+  }
+}
+
+@keyframes brand-decor-reveal {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-decor img {
+    animation: none;
+  }
+}

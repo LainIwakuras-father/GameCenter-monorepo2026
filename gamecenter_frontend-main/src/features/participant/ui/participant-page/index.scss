@@ -1,0 +1,18 @@
+.participant-page__locations {
+  margin-top: 14px;
+  max-height: calc(100svh - 198px);
+  overflow: hidden;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 400px) {
+    max-height: calc(100svh - 236px);
+  }
+
+  &_safari {
+    max-height: calc(100svh - 238px);
+
+    @media screen and (max-width: 400px) {
+      max-height: calc(100svh - 278px);
+    }
+  }
+}

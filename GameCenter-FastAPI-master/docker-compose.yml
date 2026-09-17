@@ -1,0 +1,75 @@
+services:
+  db:
+    image: postgres:15
+    container_name: db-post_gamecenter
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-gamecenter}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-gamecenter}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - network
+
+  web:
+    container_name: app_gamecenter
+    build: .
+    command:
+      - /bin/sh
+      - -c
+      - >-
+        uv run aerich upgrade &&
+        exec uv run gunicorn -w 5 -k uvicorn.workers.UvicornWorker
+        -b 0.0.0.0:8000 app.main:app
+    environment:
+      DB_ENGINE: tortoise.backends.asyncpg
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-gamecenter}
+      DB_USER: ${POSTGRES_USER:-gamecenter}
+      DB_PASS: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      ENVIRONMENT: production
+      SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY}
+      ADMIN_SECRET_KEY: ${ADMIN_SECRET_KEY:?set ADMIN_SECRET_KEY}
+      ALGORITHM: ${ALGORITHM:-HS256}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-15}
+      REFRESH_TOKEN_EXPIRE_DAYS: ${REFRESH_TOKEN_EXPIRE_DAYS:-1}
+      ADMIN_USER_MODEL: ${ADMIN_USER_MODEL:-User}
+      ADMIN_USER_MODEL_USERNAME_FIELD: ${ADMIN_USER_MODEL_USERNAME_FIELD:-username}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./static:/backend/static
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8000/health')
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  postgres_data:

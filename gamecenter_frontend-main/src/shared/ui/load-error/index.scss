@@ -1,0 +1,13 @@
+.load-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 96px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background: var(--surface-color-light);
+  color: var(--font-color-dark-gray);
+  text-align: center;
+}

@@ -1,0 +1,41 @@
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 112px;
+  width: 100%;
+  padding: 24px;
+  color: var(--font-color-on-dark);
+  text-align: center;
+}
+
+.loading-state__spinner {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  border: 3px solid rgba(229, 229, 229, 0.3);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: loading-state-spin 760ms linear infinite;
+}
+
+.loading-state__message {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@keyframes loading-state-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-state__spinner {
+    animation: none;
+    border-top-color: var(--accent);
+  }
+}

@@ -1,0 +1,115 @@
+.finish-page {
+  &__content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-height: calc(100svh - 198px);
+    padding: 22px;
+    margin-top: 14px;
+    overflow: auto;
+    box-sizing: border-box;
+    color: var(--ink);
+    background: var(--paper);
+    border: 2px solid var(--paper-bright);
+    border-radius: 4px 28px 4px 28px;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.42);
+    scrollbar-color: var(--ink) transparent;
+    scrollbar-width: thin;
+
+    @media screen and (max-width: 400px) {
+      max-height: calc(100svh - 236px);
+    }
+
+    &_safari {
+      max-height: calc(100svh - 238px);
+
+      @media screen and (max-width: 400px) {
+        max-height: calc(100svh - 276px);
+      }
+    }
+  }
+
+  &__wordmark {
+    width: min(100%, 320px);
+    height: auto;
+    max-height: 108px;
+    margin-bottom: 18px;
+    object-fit: contain;
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &__subtitle {
+    margin-top: 6px;
+    margin-bottom: 16px;
+    color: var(--font-color-secondary);
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  &__title {
+    color: var(--font-color-primary);
+    font-family: var(--font-family-display);
+    font-size: clamp(28px, 6vw, 42px);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-transform: lowercase;
+  }
+
+  &__plates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  &__plate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    padding: 12px;
+    color: var(--ink);
+    background: var(--surface-color-gray);
+    border: 2px solid var(--ink);
+    border-radius: 3px 14px 3px 14px;
+    text-align: center;
+
+    span {
+      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .status-plate__block {
+      margin: 0 !important;
+      background: var(--paper-bright);
+    }
+
+    .status-plate__block_secondary {
+      background: var(--accent);
+    }
+  }
+
+  @media (max-width: 420px) {
+    &__content {
+      padding: 16px;
+    }
+
+    &__wordmark {
+      width: min(100%, 250px);
+      max-height: 82px;
+    }
+
+    &__plates {
+      grid-template-columns: 1fr;
+    }
+  }
+}
