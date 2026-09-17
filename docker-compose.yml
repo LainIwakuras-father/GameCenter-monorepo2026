@@ -32,6 +32,8 @@ services:
         uv run aerich upgrade &&
         exec uv run gunicorn -w 5 -k uvicorn.workers.UvicornWorker
         -b 0.0.0.0:8000 app.main:app
+    env_file:
+      - .env.backend.prod
     environment:
       DB_ENGINE: tortoise.backends.asyncpg
       DB_HOST: db
@@ -76,6 +78,8 @@ services:
       args:
         VITE_API_URL: /api
     hostname: frontend
+    env_file:
+      - .env.frontend.prod
     ports:
       - "3000:80"
     restart: unless-stopped
