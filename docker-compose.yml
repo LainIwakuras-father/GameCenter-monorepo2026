@@ -96,9 +96,9 @@ services:
     restart: unless-stopped
     depends_on:
       frontend:
-        condition: service_healthy
-      web:
         condition: service_started
+      web:
+        condition: service_healthy
     environment:
       TZ: "Europe/Moscow"
     ports:
