@@ -51,7 +51,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./static:/backend/static
+      - ./backend/static:/backend/static
     depends_on:
       db:
         condition: service_healthy
@@ -73,19 +73,25 @@ services:
     build:
       context: ./gamecenter_frontend-main
       dockerfile: Dockerfile
+      args:
+        VITE_API_URL: /api
     hostname: frontend
     ports:
       - "3000:80"
     restart: unless-stopped
+    networks:
+      - network
 
 
   nginx:
-    image: nginx
+    image: nginx:1.27-alpine
     hostname: nginx-entrypoint
     container_name: nginx-entrypoint
     restart: unless-stopped
     depends_on:
-      client:
+      frontend:
+        condition: service_healthy
+      web:
         condition: service_started
     environment:
       TZ: "Europe/Moscow"
@@ -95,10 +101,20 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/ssl:/etc/nginx/ssl
-      - /etc/hosts:/etc/hosts:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
     networks:
       - network
-
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot_gamecenter
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: /bin/sh
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email ваша_почта --agree-tos -d ваш_домен
+    networks:
+      - network
 
 networks:
   network:

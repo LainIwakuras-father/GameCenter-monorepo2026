@@ -14,10 +14,14 @@ RUN npm install
 
 # Copy the rest of the code and build the app
 COPY . .
+
+ARG VITE_API_URL=/api
+ENV VITE_API_URL=$VITE_API_URL
+
 RUN npm run build
 
-# Stage 2: Serve the built app with Nginx
-FROM nginx:alpine
+# --- Stage 2: serve ---
+FROM nginx:1.27-alpine
 
 # Copy the built artifacts from the previous stage (Vite outputs to 'dist' by default)
 COPY --from=build /app/dist /usr/share/nginx/html
