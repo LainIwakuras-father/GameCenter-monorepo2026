@@ -52,10 +52,11 @@ async def create_player_teams():
         created_users = 0
         created_teams = 0
         for index, team_data in enumerate(teams_list):
-            team_number = index + 1
+            # team_number = index + 1
             #username = f"капитан{team_number}"
-            username = re.sub(r'[^\w\s]', '', team_name).replace(' ', '_')
             team_name = team_data["name"]
+            username = re.sub(r'[^\w\s]', '', team_name).replace(' ', '_')
+
             user = await User.get_or_none(username=username)
 
             # Preserve an existing team and all of its progress.  This makes
