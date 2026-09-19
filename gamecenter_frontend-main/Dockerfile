@@ -2,15 +2,18 @@
 FROM node:22-alpine AS build
 
 WORKDIR /app
-
+# Говорим pnpm, что мы в CI — не пытается интерактивно что-то спрашивать
+ENV CI=true
 # Включаем corepack для pnpm
 RUN corepack enable
 
 # Копируем только манифесты — кешируется отдельно
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-
+# hoisted-структура node_modules + установка строго по lock-файлу
+RUN echo "node-linker=hoisted" > .npmrc && \
+    pnpm install --frozen-lockfile
 # Ставим строго по lock-файлу
-RUN pnpm install --frozen-lockfile
+# RUN pnpm install --frozen-lockfile
 # # Copy package files
 # COPY package*.json ./
 

@@ -17,3 +17,5 @@ README.md
 *.db
 *.db-*
 *.db-journal
+node_modules
+dist
