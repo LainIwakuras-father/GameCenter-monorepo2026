@@ -13,6 +13,7 @@ interface Props {
 
 export const StartupIntro = ({ onLeaving }: Props) => {
   const [phase, setPhase] = useState<Phase>("playing");
+  const [markReady, setMarkReady] = useState(false);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia(
@@ -63,7 +64,16 @@ export const StartupIntro = ({ onLeaving }: Props) => {
         <div className="startup-intro__lockup">
           <div className="startup-intro__mark-shell">
             <span className="startup-intro__orbit" />
-            <img className="startup-intro__mark" src={productionMark} alt="" />
+            <img
+              className={cx("startup-intro__mark", {
+                "startup-intro__mark_ready": markReady,
+              })}
+              src={productionMark}
+              alt=""
+              decoding="sync"
+              loading="eager"
+              onLoad={() => setMarkReady(true)}
+            />
           </div>
 
           <div className="startup-intro__brand">

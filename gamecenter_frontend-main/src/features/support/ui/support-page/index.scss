@@ -129,6 +129,7 @@
     border: 2px solid var(--ink);
     border-radius: 3px 12px 3px 12px;
     box-shadow: 3px 3px 0 var(--ink);
+    font-family: var(--font-family-display);
     text-decoration: none;
     transition:
       transform 140ms ease,
@@ -224,6 +225,10 @@
 
     &__description {
       font-size: 13px;
+    }
+
+    &__name {
+      font-size: 18px;
     }
   }
 }

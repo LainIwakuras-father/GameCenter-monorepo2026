@@ -1,0 +1,231 @@
+.orgcom-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  max-height: calc(100svh - 116px);
+  padding: 22px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-family-primary);
+  border: 2px solid var(--paper-bright);
+  border-radius: 4px 28px 4px 28px;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.42);
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+
+  &__heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 12px;
+  }
+
+  &__heading-copy {
+    min-width: 0;
+  }
+
+  &__eyebrow {
+    display: block;
+    max-width: 280px;
+    margin-bottom: 5px;
+    color: var(--font-color-secondary);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    color: var(--font-color-primary);
+    font-family: var(--font-family-display);
+    font-size: clamp(30px, 8vw, 48px);
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  &__heading-mark {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 74px;
+    height: 74px;
+    background: var(--accent);
+    border: 2px solid var(--ink);
+    border-radius: 4px 20px 4px 20px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: rotate(5deg);
+
+    img {
+      display: block;
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
+  }
+
+  &__card {
+    padding: 16px;
+    margin-bottom: 16px;
+    background: var(--paper-bright);
+    border: 2px solid var(--ink);
+    border-radius: 3px 20px 3px 20px;
+  }
+
+  &__lead {
+    max-width: 470px;
+    margin-bottom: 16px;
+    color: var(--font-color-secondary);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  &__section-title {
+    display: inline-block;
+    padding: 5px 8px 4px;
+    margin-bottom: 10px;
+    color: var(--ink);
+    background: var(--accent);
+    font-family: var(--font-family-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__activity-list {
+    padding: 0;
+    margin: 0 0 16px;
+    border-top: 2px solid var(--ink);
+    list-style: none;
+  }
+
+  &__activity {
+    padding: 11px 2px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  &__activity-title {
+    color: var(--font-color-primary);
+    font-family: var(--font-family-display);
+    font-size: 17px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: lowercase;
+  }
+
+  &__activity-description {
+    margin-top: 5px;
+    color: var(--font-color-secondary);
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 48px;
+    padding: 11px 14px;
+    color: var(--ink);
+    background: var(--accent);
+    border: 2px solid var(--ink);
+    border-radius: 3px 14px 3px 14px;
+    box-shadow: 4px 4px 0 var(--ink);
+    font-family: var(--font-family-display);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.1;
+    text-decoration: none;
+    transition:
+      transform 140ms ease,
+      box-shadow 140ms ease,
+      background-color 140ms ease;
+
+    &:hover {
+      background: var(--accent-pressed);
+      transform: translate(-1px, -1px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    &:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+  }
+
+  &__cta-arrow {
+    flex: 0 0 auto;
+    font-size: 25px;
+    line-height: 0.7;
+  }
+
+  &__visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .button {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 520px) {
+    &__card {
+      padding: 13px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    padding: 16px;
+
+    &__heading {
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__heading-mark {
+      width: 52px;
+      height: 52px;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &__activity-title {
+      font-size: 16px;
+    }
+
+    &__cta {
+      gap: 8px;
+      padding-right: 10px;
+      padding-left: 10px;
+      font-size: 11px;
+    }
+
+    &__cta-arrow {
+      font-size: 22px;
+    }
+  }
+}

@@ -7,32 +7,32 @@ from app.utils.auth_utils import get_password_hash
 from app.utils.generate_password import generate_random_password
 
 teams_list = [
-    {"name": "Веселые фермеры"},
-    {"name": "Kikoriki"},
-    {"name": "Винкс"},
-    {"name": "Ам Нямы"},
-    {"name": "Барни"},
-    {"name": "Фанаты Райана Гослинга"},
-    {"name": "Телепузики"},
-    {"name": "Тигры в пиаре"},
-    {"name": "Смурфики"},
-    {"name": "Чёрный Альянс"},
-    {"name": "Миньоны"},
-    {"name": "Бабл-Тигры"},
-    {"name": "Чёткие бобры"},
-    {"name": "Dark web"},
-    {"name": "ПингWindowsы"},
-    {"name": "Бончоны"},
-    {"name": "Неизвестные"},
-    {"name": "ФавориТьфу"},
-    {"name": "Это сложно"},
-    {"name": "Команда"},
-    {"name": "Бесы"},
-    {"name": "ЛСШ ТИМ"},
-    {"name": "Скебобчики"},
-    {"name": "Dedы_007"},
-    {"name": "Я ГОВОРЮ МАКАН ВЫ ГОВОРИТЕ…"},
-    {"name": "догидог"},
+    {"name": "КЕПКА"},
+    {"name": "Симс"},
+    {"name": "Связьдец"},
+    {"name": "Фанаты манилова"},
+    {"name": "Normalnie"},
+    {"name": "Костюмеры"},
+    {"name": "Саmи в аURRе"},
+    {"name": "Принцессы"},
+    {"name": "Связь"},
+    {"name": "Скримволкеры"},
+    {"name": "Бончевские чертята"},
+    {"name": "BANANA GANG"},
+    {"name": "Пантерки"},
+    {"name": "Слово Бонча"},
+    {"name": "Клуб Больших Шишек"},
+    {"name": "Рэперы"},
+    {"name": "Крутые перцы"},
+    {"name": "KISS"},
+    {"name": "Ten Inch Nails"},
+    {"name": "Универсам"},
+    {"name": "ОЛУХИ"},
+    {"name": "кошечки"},
+    {"name": "Укус женщины"},
+    {"name": "Бананас Корпорейшн"},
+    {"name": "White Rabbit"},
+    {"name": "Китай город выход 67"},
 ]
 
 
@@ -52,7 +52,8 @@ async def create_player_teams():
         created_teams = 0
         for index, team_data in enumerate(teams_list):
             team_number = index + 1
-            username = f"капитан{team_number}"
+            #username = f"капитан{team_number}"
+            username = re.sub(r'[^\w\s]', '', team_name).replace(' ', '_')
             team_name = team_data["name"]
             user = await User.get_or_none(username=username)
 

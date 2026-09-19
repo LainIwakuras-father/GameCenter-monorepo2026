@@ -36,7 +36,7 @@ sudo docker compose exec web uv run python -m app.create_stations
 
 7. создать 10 кураторов
 ```bash
-docker-compose exec web uv run python -m app.create_curators.py
+sudo docker compose exec web uv run python -m app.create_curators
 ```
 8. создать пути для капитанов
 ```bash

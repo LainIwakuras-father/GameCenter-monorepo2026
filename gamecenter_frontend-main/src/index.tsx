@@ -1,5 +1,8 @@
 import ReactDOM from "react-dom/client";
 
+import "@fontsource-variable/onest";
+import "@fontsource-variable/unbounded";
+
 import brandLogo from "./shared/assets/brand/logo-ic26.svg";
 import { ErrorBoundary } from "./shared/ui/error-boundary";
 

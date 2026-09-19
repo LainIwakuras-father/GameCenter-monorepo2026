@@ -1,51 +1,3 @@
-@font-face {
-  font-family: "Articulat CF";
-  src: url("./shared/lib/fonts/ArticulatCF-Medium.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Articulat CF";
-  src: url("./shared/lib/fonts/ArticulatCF-DemiBold.otf") format("opentype");
-  font-weight: 600 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Hirro Sans";
-  src: url("./shared/lib/fonts/HirroSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Hirro Sans";
-  src: url("./shared/lib/fonts/HirroSans-Bold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Hirro Sans";
-  src: url("./shared/lib/fonts/HirroSans-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Hirro Sans";
-  src: url("./shared/lib/fonts/HirroSans-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   color-scheme: dark;
 
@@ -89,8 +41,8 @@
   --font-color-blue: var(--ink);
   --font-color-on-dark: var(--paper);
 
-  --font-family-primary: "Articulat CF", Arial, sans-serif;
-  --font-family-display: "Hirro Sans", "Articulat CF", Arial, sans-serif;
+  --font-family-primary: "Onest Variable", "Onest", Arial, sans-serif;
+  --font-family-display: "Unbounded Variable", "Unbounded", Arial, sans-serif;
 }
 
 * {

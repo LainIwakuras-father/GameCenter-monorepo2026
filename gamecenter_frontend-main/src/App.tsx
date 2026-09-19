@@ -15,6 +15,8 @@ import { RegistrationPage } from "./features/auth";
 import { WelcomePage } from "./features/welcome";
 import { FinishPage } from "./features/finish";
 import { SupportPage } from "./features/support";
+import { BlinkPage } from "./features/blink";
+import { OrgcomPage } from "./features/orgcom";
 
 import { $userStore, clearMe, getMe } from "./entities/user";
 import {
@@ -52,6 +54,8 @@ function App() {
               <Route path="/curator" element={<CuratorPage />} />
               <Route path="/finisher" element={<FinishPage />} />
               <Route path="/support" element={<SupportPage />} />
+              <Route path="/blink" element={<BlinkPage />} />
+              <Route path="/orgcom" element={<OrgcomPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </RouteTransition>
@@ -70,10 +74,17 @@ const Redirects = ({ children }: React.PropsWithChildren) => {
   const redirect = useNavigate();
   const location = useLocation();
   const isPublicRoute =
-    location.pathname === "/" || location.pathname === "/support";
+    location.pathname === "/" ||
+    location.pathname === "/support" ||
+    location.pathname === "/blink" ||
+    location.pathname === "/orgcom";
 
   const loadSession = React.useCallback(() => {
-    if (location.pathname === "/support") {
+    if (
+      location.pathname === "/support" ||
+      location.pathname === "/blink" ||
+      location.pathname === "/orgcom"
+    ) {
       clearMe();
       setSessionError(null);
       setShouldRender(true);

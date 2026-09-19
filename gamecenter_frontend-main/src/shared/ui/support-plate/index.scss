@@ -40,7 +40,9 @@
     height: 24px;
   }
 
-  &__sos-link {
+  &__sos-link,
+  &__blink-link,
+  &__orgcom-link {
     display: flex;
     flex: 0 0 36px;
     align-items: center;
@@ -53,14 +55,25 @@
     box-shadow: none;
   }
 
-  &__brand-mark {
+  &__blink-link,
+  &__orgcom-link {
     margin-left: 4px;
+  }
 
-    img {
-      display: block;
-      width: 34px;
-      height: 34px;
-    }
+  &__blink-logo {
+    display: block;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  &__orgcom-logo {
+    display: block;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
   }
 
   &__powered b {

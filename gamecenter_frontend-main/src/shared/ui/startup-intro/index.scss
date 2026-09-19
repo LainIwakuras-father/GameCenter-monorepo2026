@@ -139,9 +139,13 @@
     display: block;
     width: 78%;
     height: auto;
+    visibility: hidden;
     opacity: 0;
-    filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.34));
-    animation: startup-mark-in 1050ms 180ms var(--intro-ease) forwards;
+
+    &_ready {
+      visibility: visible;
+      animation: startup-mark-in 1050ms 180ms var(--intro-ease) forwards;
+    }
   }
 
   &__brand {
@@ -168,7 +172,7 @@
     justify-content: center;
     overflow: hidden;
     color: var(--paper);
-    font-family: "Hirro Sans", sans-serif;
+    font-family: var(--font-family-display);
     font-size: clamp(42px, 8vw, 72px);
     font-weight: 900;
     line-height: 0.86;
@@ -214,7 +218,7 @@
     margin-top: 12px;
     margin-right: -0.48em;
     color: var(--accent);
-    font-family: "Hirro Sans", sans-serif;
+    font-family: var(--font-family-display);
     font-size: clamp(9px, 1.5vw, 12px);
     font-weight: 700;
     line-height: 1;
@@ -324,19 +328,16 @@
 @keyframes startup-mark-in {
   0% {
     opacity: 0;
-    filter: blur(9px) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.34));
     transform: scale(0.48) rotate(-54deg);
   }
 
   72% {
     opacity: 1;
-    filter: blur(0) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.34));
     transform: scale(1.06) rotate(4deg);
   }
 
   100% {
     opacity: 1;
-    filter: blur(0) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.34));
     transform: scale(1) rotate(0);
   }
 }
