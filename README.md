@@ -14,17 +14,19 @@ cd /GameCenter-FastAPI
 ```bash
 docker compose up -d
 ```
-3. запустить миграции
-```bash
-docker-compose exec web uv run aerich upgrade
-```
-4. создать суперпользователя
+
+3. создать суперпользователя
 ```bash
 docker-compose exec web uv run app/create_superuser.py # или же
 sudo docker compose exec web uv run python -m app.create_superuser
 ```
+Дополнено: после этого шага можно просто запустить один скрипт
+```bash
+sudo chmod +x start.sh && ./start.sh
+```
 
-6. создать 10 заданий
+
+4. создать 10 заданий
 ```bash
 sudo docker compose exec web uv run python -m app.create_tasks
 ```
@@ -34,21 +36,21 @@ docker-compose exec web uv run app/create_stations.py
 sudo docker compose exec web uv run python -m app.create_stations
 ```
 
-7. создать 10 кураторов
+6. создать 10 кураторов
 ```bash
 sudo docker compose exec web uv run python -m app.create_curators
 ```
-8. создать пути для капитанов
+7. создать пути для капитанов
 ```bash
 docker-compose exec web uv run python -m app.create_station_order.py
 sudo docker compose exec web uv run python -m app.create_station_order
 ```
-9. cоздать 26 капитанов
+8. cоздать 26 капитанов
 ```bash
 docker-compose exec web uv run python -m app.create_player_teams.
 sudo docker compose exec web uv run python -m app.create_player_teams
 ```
-10.
+9.
 ```bash
 docker-compose exec web uv run app/drop_tables.py
 ```
