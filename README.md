@@ -41,10 +41,12 @@ sudo docker compose exec web uv run python -m app.create_curators
 8. создать пути для капитанов
 ```bash
 docker-compose exec web uv run python -m app.create_station_order.py
+sudo docker compose exec web uv run python -m app.create_station_order
 ```
 9. cоздать 26 капитанов
 ```bash
-docker-compose exec web uv run python -m app.create_player_teams.py
+docker-compose exec web uv run python -m app.create_player_teams.
+sudo docker compose exec web uv run python -m app.create_player_teams
 ```
 10.
 ```bash
