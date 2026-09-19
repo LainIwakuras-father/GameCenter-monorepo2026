@@ -60,41 +60,79 @@ team_station_data = {
     "White Rabbit": [5, 1, 2, 3, 4, 10, 6, 7, 8, 9],
     "Китай город выход 67": [6, 8, 10, 7, 9, 1, 3, 5, 2, 4],
 }
-
 async def create_station_order():
     await init_db()
-    # перед мероприятием поменять дефолтный пароль
-    # hash_password = get_password_hash("admin")
     try:
-        """
-        СОЗДАЮ Заданные пути в мероприятии
-        """
-        stations_orders = await StationOrder.all()
-        if not stations_orders:
-            for team_name, station_numbers in team_station_data.items():
-                await StationOrder.create(
-                    first=await Station.get(id=station_numbers[0]),
-                    second=await Station.get(id=station_numbers[1]),
-                    third=await Station.get(id=station_numbers[2]),
-                    fourth=await Station.get(id=station_numbers[3]),
-                    fifth=await Station.get(id=station_numbers[4]),
-                    sixth=await Station.get(id=station_numbers[5]),
-                    seventh=await Station.get(id=station_numbers[6]),
-                    eighth=await Station.get(id=station_numbers[7]),
-                    ninth=await Station.get(id=station_numbers[8]),
-                    tenth=await Station.get(id=station_numbers[9]),
-                )
+        existing = await StationOrder.all()
+        if existing:
+            logger.info("StationOrders already exist, skipping")
+            return
 
-                logger.info(
-                    f"Created and linked station order for team {team_name}"
-                )
+        # Все станции по порядку id — их позиция = номер 1..N
+        stations = await Station.all().order_by("id")
+        if len(stations) < 10:
+            raise RuntimeError(
+                f"Need at least 10 stations, found {len(stations)}"
+            )
 
-        logger.info("26 stationOrders created! if not exist")
+        for team_name, station_numbers in team_station_data.items():
+            # station_numbers содержит номера 1..10, превращаем в объекты Station
+            picked = [stations[n - 1] for n in station_numbers]
+
+            await StationOrder.create(
+                first=picked[0],
+                second=picked[1],
+                third=picked[2],
+                fourth=picked[3],
+                fifth=picked[4],
+                sixth=picked[5],
+                seventh=picked[6],
+                eighth=picked[7],
+                ninth=picked[8],
+                tenth=picked[9],
+            )
+            logger.info(f"Created station order for {team_name}")
+
+        logger.info(f"{len(team_station_data)} stationOrders created")
     except Exception:
-        logger.error("db connection error")
+        logger.exception("Failed to create station orders")
         raise
     finally:
         await close_db()
+# async def create_station_order():
+#     await init_db()
+#     # перед мероприятием поменять дефолтный пароль
+#     # hash_password = get_password_hash("admin")
+#     try:
+#         """
+#         СОЗДАЮ Заданные пути в мероприятии
+#         """
+#         stations_orders = await StationOrder.all()
+#         if not stations_orders:
+#             for team_name, station_numbers in team_station_data.items():
+#                 await StationOrder.create(
+#                     first=await Station.get(id=station_numbers[0]),
+#                     second=await Station.get(id=station_numbers[1]),
+#                     third=await Station.get(id=station_numbers[2]),
+#                     fourth=await Station.get(id=station_numbers[3]),
+#                     fifth=await Station.get(id=station_numbers[4]),
+#                     sixth=await Station.get(id=station_numbers[5]),
+#                     seventh=await Station.get(id=station_numbers[6]),
+#                     eighth=await Station.get(id=station_numbers[7]),
+#                     ninth=await Station.get(id=station_numbers[8]),
+#                     tenth=await Station.get(id=station_numbers[9]),
+#                 )
+
+#                 logger.info(
+#                     f"Created and linked station order for team {team_name}"
+#                 )
+
+#         logger.info("26 stationOrders created! if not exist")
+#     except Exception:
+#         logger.error("db connection error")
+#         raise
+#     finally:
+#         await close_db()
 
 
 if __name__ == "__main__":
