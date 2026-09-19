@@ -3,14 +3,22 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Включаем corepack для pnpm
+RUN corepack enable
 
-# Patch package.json to update @types/node to a version compatible with Vite 7.x
-RUN sed -i 's/"@types\/node":\s*"^18.19.0"/"@types\/node": "^20.19.0"/' package.json
+# Копируем только манифесты — кешируется отдельно
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install dependencies with the updated version
-RUN npm install
+# Ставим строго по lock-файлу
+RUN pnpm install --frozen-lockfile
+# # Copy package files
+# COPY package*.json ./
+
+# # Patch package.json to update @types/node to a version compatible with Vite 7.x
+# RUN sed -i 's/"@types\/node":\s*"^18.19.0"/"@types\/node": "^20.19.0"/' package.json
+
+# # Install dependencies with the updated version
+# RUN npm install
 
 # Copy the rest of the code and build the app
 COPY . .
