@@ -37,7 +37,7 @@ class PlayerTeamRepository(BaseRepository[PlayerTeam]):
                 await PlayerTeam.filter(id=team_id)
                 .select_related("stations")
                 .using_db(connection)
-                .select_for_update()
+                .select_for_update(of=("self",))
                 .first()
             )
             if team is None:

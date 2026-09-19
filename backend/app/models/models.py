@@ -47,7 +47,8 @@ class PlayerTeam(BaseModel):
     user = fields.OneToOneField("models.User", related_name="player_team")
     team_name = fields.CharField(max_length=100)
     score = fields.IntField(default=0)
-    stations = fields.ForeignKeyField("models.StationOrder", null=True)
+    stations = fields.ForeignKeyField("models.StationOrder")
+    # stations = fields.ForeignKeyField("models.StationOrder", null=True) # надо будет потом поменять на False и сделать миграцию  но это пока долго
     # A one-based route position; 11 means that all ten stations are done.
     current_station = fields.IntField(
         default=1,
