@@ -11,8 +11,11 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-gamecenter}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB:-gamecenter}
+      TZ: "Europe/Moscow"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+      - ./postgres/inirdb:/docker-entrypoint-initdb.d
+      - ./postgres/data:/var/lib/postgresql/data:rw
     healthcheck:
       test:
         - CMD-SHELL
@@ -20,6 +23,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: unless-stopped
     networks:
       - network
 
@@ -129,5 +133,5 @@ networks:
     driver: bridge
 
 
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
